@@ -1,8 +1,7 @@
 FROM debian:bullseye-slim
 ARG DEBIAN_RELEASE=bullseye
 
-RUN true && \
-	apt-get update && \
+RUN apt-get update && \
 	apt-get install curl gnupg ca-certificates socat -y && \
  	curl https://pkg.cloudflareclient.com/pubkey.gpg | gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg && \
 	echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $DEBIAN_RELEASE main" | tee /etc/apt/sources.list.d/cloudflare-client.list && \
